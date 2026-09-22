@@ -1,0 +1,97 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a3a67db9-7228-4060-b20f-3dfba6ee5df8",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {id_solicitud:\"DEV-1115\", monto:19990, ruta:\"APROBACION\", motivo:\"APROBACION\"},\n  {id_solicitud:\"DEV-1116\", monto:69980, ruta:\"REVISION\", motivo:\"REVISION_MONTO\"},\n  {id_solicitud:\"DEV-1117\", monto:24990, ruta:\"REVISION\", motivo:\"REVISION_FALLA\"},\n  {id_solicitud:\"DEV-1118\", monto:79990, ruta:\"REVISION\", motivo:\"REVISION_MONTO\"},\n  {id_solicitud:\"DEV-1119\", monto:45990, ruta:\"RECHAZO\", motivo:\"RECHAZO_PLAZO\"},\n  {id_solicitud:\"DEV-1120\", monto:89990, ruta:\"REVISION\", motivo:\"REVISION_MONTO\"},\n  {id_solicitud:\"DEV-1121\", monto:289990, ruta:\"REVISION\", motivo:\"REVISION_MONTO\"},\n  {id_solicitud:\"DEV-1122\", monto:45990, ruta:\"APROBACION\", motivo:\"APROBACION\"},\n  {id_solicitud:\"DEV-1123\", monto:39980, ruta:\"RECHAZO\", motivo:\"RECHAZO_ESTADO\"},\n  {id_solicitud:\"DEV-1124\", monto:49980, ruta:\"APROBACION\", motivo:\"APROBACION\"},\n  {id_solicitud:\"DEV-1125\", monto:34990, ruta:\"RECHAZO\", motivo:\"RECHAZO_PLAZO\"},\n  {id_solicitud:\"DEV-1126\", monto:79990, ruta:\"REVISION\", motivo:\"REVISION_MONTO\"},\n  {id_solicitud:\"DEV-C01\", monto:9990, ruta:\"APROBACION\", motivo:\"APROBACION\"},\n  {id_solicitud:\"DEV-C02\", monto:289990, ruta:\"REVISION\", motivo:\"REVISION_MONTO\"},\n  {id_solicitud:\"DEV-C03\", monto:79990, ruta:\"RECHAZO\", motivo:\"RECHAZO_PLAZO\"}\n].map(item => ({json: item}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "6f8a93bb-2b62-4e4a-bc5d-fa16aa18f4ec",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "id_solicitud"
+            },
+            {
+              "aggregation": "sum",
+              "field": "monto"
+            }
+          ]
+        },
+        "fieldsToSplitBy": "ruta",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "9c090a83-a899-4b0d-8f62-dcfbf98c8393",
+      "name": "Summarize"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8af79e22-2847-4cc4-a0c3-ac5ab6f1df55",
+  "meta": {
+    "instanceId": "e37b85698763e83a24373ddf54b1cd154b3d4b487f08e43c5b5a4191c987aa52"
+  },
+  "nodeGroups": [],
+  "id": "M1bD0LkUQ3easABP",
+  "tags": []
+}

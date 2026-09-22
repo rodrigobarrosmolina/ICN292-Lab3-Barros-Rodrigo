@@ -1,0 +1,60 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a81edf06-91c2-4abb-9ac0-6ae54bdd2c88",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://rbarrosmol.app.n8n.cloud/webhook-test/triage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"id_solicitud\":\"DEV-1122\",\"sku\":\"PL-120\",\"unidades\":\"1\",\"monto\":\"45990\",\"dias_desde_compra\":\"2\",\"estado_producto\":\"sin_abrir\",\"email_cliente\":\"cliente8@example.cl\"}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "d62b86e3-961a-4f11-9eb1-c8c1fc332eee",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "03c870b4-e31b-4455-bbcf-918be742b87f",
+  "meta": {
+    "instanceId": "e37b85698763e83a24373ddf54b1cd154b3d4b487f08e43c5b5a4191c987aa52"
+  },
+  "nodeGroups": [],
+  "id": "2z89jRS3gkNPXhD4",
+  "tags": []
+}
