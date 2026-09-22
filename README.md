@@ -18,7 +18,7 @@
 - `ICN292-Lab3-Informe.docx` — Informe en Word
 - `Triage-Devoluciones.json` — Workflow principal de triage
 - `Emisor.json` — Workflow emisor de solicitudes
-- `Resumen-Programado.json` — Workflow de resumen diario
+- `Resumen.json` — Workflow de resumen diario
 
 ## Cómo reproducir
 1. Importar los archivos .json en n8n (Settings → Import workflow)
